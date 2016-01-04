@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.letsappit.mineautomation" >
+
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.nfc.action.TAG_DISCOVERED"
+                android:resource="@xml/tech" />
+        </activity>
+        <activity
+            android:name=".Master.Master"
+            android:label="@string/title_activity_master"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.letsappit.mineautomation.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CRUDLocation"
+            android:label="@string/title_activity_main2"
+            android:parentActivityName=".Master.Master"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Master.Master" />
+        </activity>
+        <activity
+            android:name=".Master.TableDetailActivity"
+            android:label="@string/title_activity_table_detail"
+            android:parentActivityName=".Master.Master"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Master.Master" />
+        </activity>
+        <activity
+            android:name=".Location.RowEditorLocation"
+            android:label="@string/title_activity_row_editor_location"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".Zone.RowActivityZone"
+            android:label="@string/title_activity_row_activity_zone"
+            android:parentActivityName=".Master.TableDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.letsappit.mineautomation.Master.TableDetailActivity" />
+        </activity>
+    </application>
+
+</manifest>
