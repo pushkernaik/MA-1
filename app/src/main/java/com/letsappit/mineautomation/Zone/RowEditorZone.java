@@ -15,7 +15,7 @@ import com.letsappit.mineautomation.BO.Location;
 import com.letsappit.mineautomation.R;
 import com.letsappit.mineautomation.data.DBOps;
 
-public class RowActivityZone extends AppCompatActivity {
+public class RowEditorZone extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

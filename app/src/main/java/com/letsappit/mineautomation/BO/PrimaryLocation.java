@@ -3,11 +3,11 @@ package com.letsappit.mineautomation.BO;
 /**
  * Created by radhaprasadborkar on 24/12/15.
  */
-public class Location {
+public class PrimaryLocation {
     String code,description;
     String datetime;
 
-    public Location(String code, String description, String datetime) {
+    public PrimaryLocation(String code, String description, String datetime) {
         this.code = code;
         this.description = description;
         this.datetime = datetime;
