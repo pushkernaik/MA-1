@@ -8,6 +8,10 @@
         android:name="android.hardware.nfc"
         android:required="true" />
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -41,15 +45,6 @@
                 android:value="com.letsappit.mineautomation.MainActivity" />
         </activity>
         <activity
-            android:name=".CRUDLocation"
-            android:label="@string/title_activity_main2"
-            android:parentActivityName=".Master.Master"
-            android:theme="@style/AppTheme.NoActionBar" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Master.Master" />
-        </activity>
-        <activity
             android:name=".Master.TableDetailActivity"
             android:label="@string/title_activity_table_detail"
             android:parentActivityName=".Master.Master"
@@ -59,18 +54,71 @@
                 android:value=".Master.Master" />
         </activity>
         <activity
-            android:name=".Location.RowEditorLocation"
+            android:name=".PrimaryLocation.RowEditorLocation"
             android:label="@string/title_activity_row_editor_location"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".Zone.RowActivityZone"
+            android:name=".Zone.RowEditorZone"
             android:label="@string/title_activity_row_activity_zone"
             android:parentActivityName=".Master.TableDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.letsappit.mineautomation.Master.TableDetailActivity" />
+        </activity>
+        <activity
+            android:name=".Permit.RowEditorPermit"
+            android:label="@string/title_activity_row_editor_permit"
+            android:parentActivityName=".Master.TableDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.letsappit.mineautomation.Master.TableDetailActivity" />
+        </activity>
+        <activity
+            android:name=".IssueTruckTag"
+            android:label="@string/title_activity_issue_truck_tag"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.letsappit.mineautomation.MainActivity" />
+
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="ANDROID.INTENT.CATEGORY.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ReadCard"
+            android:label="@string/title_activity_read_card"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.letsappit.mineautomation.MainActivity" />
+
+            <intent-filter>
+
+                <!-- <action android:name="android.nfc.action.NDEF_DISCOVERED" /> -->
+
+                <category android:name="ANDROID.INTENT.CATEGORY.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoadingActivity"
+            android:label="@string/title_activity_loading"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.letsappit.mineautomation.MainActivity" />
         </activity>
     </application>
 

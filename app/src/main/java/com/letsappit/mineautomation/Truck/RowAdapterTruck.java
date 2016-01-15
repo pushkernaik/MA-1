@@ -1,7 +1,6 @@
 package com.letsappit.mineautomation.Truck;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.letsappit.mineautomation.BO.ListItem;
 import com.letsappit.mineautomation.R;
-import com.letsappit.mineautomation.Zone.RowEditorZone;
 
 import java.util.ArrayList;
 
@@ -67,10 +65,10 @@ public class RowAdapterTruck extends RecyclerView.Adapter<RowAdapterTruck.ViewHo
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext,RowEditorZone.class);
-                intent.putExtra("ROW_CODE",table.getTitle());
-                intent.putExtra("OP_TYPE",2);
-                mContext.startActivity(intent);
+//                Intent intent = new Intent(mContext,RowEditorTruck.class);
+//                intent.putExtra("ROW_CODE",table.getTitle());
+//                intent.putExtra("OP_TYPE",2);
+//                mContext.startActivity(intent);
             }
         });
     }

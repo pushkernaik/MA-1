@@ -53,12 +53,33 @@ public class MAContract {
 
     }
 
+
 //create a new class for every other table
     //1. the class name should start with Uppercase Letter and camelCase can be followed
     //2. all the String refering table name  and attributes should be static
     //3. no need to add id feild as the class extends base columns
 
     //example 2.
+    public static final class Truck implements BaseColumns {
+        public static final String TABLE_NAME = "truck"; // table name that can be accessed from all the classes
+
+        public static final String COLUMN_CODE= "code";  //attributes for table
+        public static final String COLUMN_REG_NUMBER= "r_number";
+        public static final String COLUMN_TW= "tare_wt";
+        public static final String COLUMN_T_C_C= "trans_c_c";
+        public static final String COLUMN_DRIVER_CODE = "driver_code";
+        public static final String COLUMN_CAPACITY= "capacity";
+        public static final String COLUMN_CARD_ID = "card_id";
+        public static final String COLUMN_CAT_CODE= "cat_code";
+
+        public static final String COLUMN_UPDATED = "updated";
+        public static final String COLUMN_GROUP_CODE = "group_code";
+//this is how a single table is defined along with the table name and atributes
+        // Every table is defined as a class so that it becomes easy to refer clumn names and table names from the instance of this class
+        //this makes the code more robust
+
+    }
+
 
     public static final class Permit implements BaseColumns {
         public static final String TABLE_NAME = "permit"; // table name that can be accessed from all the classes

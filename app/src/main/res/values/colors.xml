@@ -3,4 +3,21 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--<color name="bgLoading">#31A2E2</color>-->
+    <!--<color name="bgUnloading">#F5CD00</color>-->
+    <!--<color name="bgSettings">#324A61</color>-->
+    <!--<color name="bgWrite">#FA4846</color>-->
+    <!--<color name="bgWeighBridge">#B258BF</color>-->
+    <!--<color name="bgRead">#00E080</color>-->
+    <!--<color name="bgMaster">#31A2E2</color>-->
+
+    <color name="bgLoading">#243B53</color>
+    <color name="bgUnloading">#243B53</color>
+    <color name="bgSettings">#243B53</color>
+    <color name="bgWrite">#243B53</color>
+    <color name="bgWeighBridge">#243B53</color>
+    <color name="bgRead">#243B53</color>
+    <color name="bgMaster">#243B53</color>
+
 </resources>

@@ -66,7 +66,7 @@ public class RowAdapterZone extends RecyclerView.Adapter<RowAdapterZone.ViewHold
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext,RowActivityZone.class);
+                Intent intent = new Intent(mContext,RowEditorZone.class);
                 intent.putExtra("ROW_CODE",table.getTitle());
                 intent.putExtra("OP_TYPE",2);
                 mContext.startActivity(intent);

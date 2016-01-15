@@ -11,6 +11,7 @@
         <item>Sub Zone</item>
         <item>Permit</item>
         <item>Truck</item>
+        <item>User</item>
 
     </string-array>
     <string-array name="table_description">
@@ -19,10 +20,16 @@
         <item>Sub Zone information here...</item>
         <item>Permit all about permits...</item>
         <item>Truck details...</item>
+        <item>User Info</item>
 
     </string-array>
     <string name="title_activity_table_detail">TableDetailActivity</string>
     <string name="title_activity_row_editor_location">RowEditorLocation</string>
     <string name="title_activity_row_activity_zone">RowActivityZone</string>
+    <string name="title_activity_row_editor_permit">RowEditorPermit</string>
+    <string name="title_activity_issue_truck_tag">IssueTruckTag</string>
+    <string name="title_activity_read_card">ReadCard</string>
+    <string name="title_activity_laoding">Laoding</string>
+    <string name="title_activity_loading">Loading</string>
 
 </resources>

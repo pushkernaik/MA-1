@@ -37,7 +37,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView mTitle,mDescription;
-public CardView cardView;
+        public CardView cardView;
 
         public ViewHolder(View v) {
             super(v);
@@ -58,19 +58,20 @@ public CardView cardView;
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(this.rowLayout, parent, false);
+
         return new TableAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(TableAdapter.ViewHolder holder,final int i) {
-         ListItem table = this.mContent.get(i);
+    public void onBindViewHolder(TableAdapter.ViewHolder holder,final int position) {
+         ListItem table = this.mContent.get(position);
         holder.mTitle.setText(table.getTitle());
         holder.mDescription.setText(table.getDescription());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext,TableDetailActivity.class);
-                intent.putExtra("TABLE_POOSITION",i);
+                intent.putExtra("TABLE_ID",position);
                 mContext.startActivity(intent);
             }
         });

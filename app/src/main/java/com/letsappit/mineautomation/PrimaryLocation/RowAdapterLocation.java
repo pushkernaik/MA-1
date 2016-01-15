@@ -1,4 +1,4 @@
-package com.letsappit.mineautomation.Location;
+package com.letsappit.mineautomation.PrimaryLocation;
 
 import android.app.Activity;
 import android.content.Intent;

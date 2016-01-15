@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.letsappit.mineautomation.BO.ListItem;
-import com.letsappit.mineautomation.Location.RowEditorLocation;
+import com.letsappit.mineautomation.PrimaryLocation.RowEditorLocation;
 import com.letsappit.mineautomation.R;
 
 import java.util.ArrayList;

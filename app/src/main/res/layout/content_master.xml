@@ -22,54 +22,5 @@
         android:scrollbars="none"
 
         />
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        >
-        <TextView
-            android:id="@+id/text1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select table"/>
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_below="@+id/text1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ></Spinner>
-    <Button
-        android:id="@+id/add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner1"
-        android:text="ADD"
-        android:onClick="add"
-        android:layout_alignRight="@+id/spinner1"
-        android:layout_alignEnd="@+id/spinner1" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UPDATE"
-        android:id="@+id/update"
-        android:layout_below="@+id/add"
-
-        android:onClick="update"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DELETE"
-        android:id="@+id/delete"
-        android:layout_below="@+id/update"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-</RelativeLayout>
 </RelativeLayout>

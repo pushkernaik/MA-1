@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:scrollbars="vertical"
+    android:animateLayoutChanges="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:padding="@dimen/activity_horizontal_margin_half"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_read_card" tools:context="com.letsappit.mineautomation.ReadCard">
+<LinearLayout
+    android:orientation="vertical"
+    android:id="@+id/parent_card_read"
+    android:animateLayoutChanges="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+    <TextView
+        android:id="@+id/details_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TAG DETAILS"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+</LinearLayout>
+</ScrollView>

@@ -7,9 +7,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.format.Time;
 
 import com.letsappit.mineautomation.BO.ListItem;
-import com.letsappit.mineautomation.BO.Location;
+import com.letsappit.mineautomation.BO.PrimaryLocation;
+import com.letsappit.mineautomation.BO.Truck;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
+
+import utils.Util;
 
 /**
  * Created by radhaprasadborkar on 02/11/15.
@@ -20,46 +25,39 @@ public class DBOps {
         // normalize the start date to the beginning of the (UTC) day
         Time time = new Time();
         time.set(startDate);
+
         int julianDay = Time.getJulianDay(startDate, time.gmtoff);
         return time.setJulianDay(julianDay);
     }
 
-/////////location methods////
-    public static long insertNewLocation(Context context,Location location) {
+/////////Primarylocation methods////
+    public static long insertNewLocation(Context context,PrimaryLocation primaryLocation) {
        MADbHelper dbHelper = new MADbHelper(context);
        SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues loc_values = new ContentValues();
-        loc_values.put(MAContract.Location.COLUMN_CODE,location.getCode());
-        loc_values.put(MAContract.Location.COLUMN_DESCRIPTION,location.getDescription());
-        loc_values.put(MAContract.Location.COLUMN_UPDATED,location.getDatetime());
+        loc_values.put(MAContract.Location.COLUMN_CODE, primaryLocation.getCode());
+        loc_values.put(MAContract.Location.COLUMN_DESCRIPTION, primaryLocation.getDescription());
+        loc_values.put(MAContract.Location.COLUMN_UPDATED, Util.getFormatedCurrentDate());
         return db.insert(MAContract.Location.TABLE_NAME, null, loc_values);
 
 
     }
 
-    public static int updateLocation(Context context, Location location) {
+    public static int updateLocation(Context context, PrimaryLocation primaryLocation) {
         MADbHelper dbHelper = new MADbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(MAContract.Location.COLUMN_DESCRIPTION,location.getDescription());
-        values.put(MAContract.Location.COLUMN_UPDATED,location.getDatetime());
+        values.put(MAContract.Location.COLUMN_DESCRIPTION, primaryLocation.getDescription());
+        values.put(MAContract.Location.COLUMN_UPDATED, Util.getFormatedCurrentDate());
         // updating row
-        return db.update(MAContract.Location.TABLE_NAME, values, MAContract.Location.COLUMN_CODE+ " = ?",
-                new String[] {location.getCode()});
+        return db.update(MAContract.Location.TABLE_NAME, values, MAContract.Location.COLUMN_CODE + " = ?",
+                new String[]{primaryLocation.getCode()});
     }
 
-    public static int deleteLocation(Context context, String code) {
-        MADbHelper dbHelper = new MADbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        int i = db.delete(MAContract.Location.TABLE_NAME, MAContract.Location.COLUMN_CODE+ " = ?",
-                new String[] {code});
-        db.close();
-        return i;
-    }
 
-    public static ArrayList<Location> getAllLocations(Context context)
-    {
-        ArrayList<Location> allLocations = new ArrayList<>();
+
+    public static ArrayList<PrimaryLocation> getAllLocations(Context context) throws ParseException {
+        ArrayList<PrimaryLocation> allPrimaryLocations = new ArrayList<>();
         MADbHelper dbHelper = new MADbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cursor = db.query(MAContract.Location.TABLE_NAME,
@@ -67,12 +65,11 @@ public class DBOps {
                 null,null,null,null,null);
         for(cursor.moveToFirst();!cursor.isAfterLast();cursor.moveToNext())
         {
-            allLocations.add(new Location(cursor.getString(0),cursor.getString(1),cursor.getString(2)));
+            allPrimaryLocations.add(new PrimaryLocation(cursor.getString(0),cursor.getString(1),Util.getDateFromString(cursor.getString(2))));
         }
-        return allLocations;
+        return allPrimaryLocations;
     }
-    public static Location getLocationByCode(Context context,String code)
-    {
+    public static PrimaryLocation getLocationByCode(Context context,String code) throws ParseException {
         MADbHelper dbHelper = new MADbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cursor = db.query(MAContract.Location.TABLE_NAME,
@@ -80,12 +77,82 @@ public class DBOps {
                 MAContract.Location.COLUMN_CODE + " = ?", new String[]{code}, null, null, null);
 
         if(cursor.moveToFirst())
-            return new Location(cursor.getString(0),cursor.getString(1),cursor.getString(2));
+            return new PrimaryLocation(cursor.getString(0),cursor.getString(1),Util.getDateFromString(cursor.getString(2)));
         else
-            return new Location("","","");
+            return new PrimaryLocation("","",new Date());
+    }
+
+///////////////end primary location methods//////////////
+
+
+    ////////////////// TRUCK METHODS///////////////////////
+
+    public static long insertNewTruck(Context context,Truck truck) {
+        MADbHelper dbHelper = new MADbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues truck_values = new ContentValues();
+        truck_values.put(MAContract.Truck.COLUMN_CODE, truck.getCode());
+        truck_values.put(MAContract.Truck.COLUMN_REG_NUMBER, truck.getReg_no());
+        truck_values.put(MAContract.Truck.COLUMN_T_C_C, truck.getTransport_cont_code());
+        truck_values.put(MAContract.Truck.COLUMN_DRIVER_CODE, truck.getDriverCode());
+        truck_values.put(MAContract.Truck.COLUMN_GROUP_CODE, truck.getGroup_code());
+        truck_values.put(MAContract.Truck.COLUMN_CARD_ID, truck.getCard_id());
+        truck_values.put(MAContract.Truck.COLUMN_CAT_CODE, truck.getCat_code());
+        truck_values.put(MAContract.Truck.COLUMN_UPDATED, Util.getFormatedDate(truck.getReg_date()));
+        truck_values.put(MAContract.Truck.COLUMN_TW, truck.getTare_wt());
+        truck_values.put(MAContract.Truck.COLUMN_CAPACITY, truck.getCapacity());
+        return db.insert(MAContract.Truck.TABLE_NAME, null, truck_values);
+
+
+    }
+    public static ArrayList<String> getAllTruckRegNo(Context context) {
+        ArrayList<String> allTruckRegNo = new ArrayList<>();
+        MADbHelper dbHelper = new MADbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.query(MAContract.Truck.TABLE_NAME,
+                new String[]{MAContract.Truck.COLUMN_REG_NUMBER},
+                null,null,null,null,null);
+        for(cursor.moveToFirst();!cursor.isAfterLast();cursor.moveToNext())
+        {
+            allTruckRegNo.add(cursor.getString(0));
+        }
+        return allTruckRegNo;
+    }
+    public static Truck getTruckByRegNo(Context context,String regNo) throws ParseException {
+        MADbHelper dbHelper = new MADbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.query(MAContract.Truck.TABLE_NAME,
+                new String[]{
+                        MAContract.Location.COLUMN_CODE,
+                        MAContract.Truck.COLUMN_REG_NUMBER,
+                        MAContract.Truck.COLUMN_TW,
+                        MAContract.Truck.COLUMN_T_C_C,
+                        MAContract.Truck.COLUMN_DRIVER_CODE,
+                        MAContract.Truck.COLUMN_CARD_ID,
+                        MAContract.Truck.COLUMN_CAPACITY,
+                        MAContract.Truck.COLUMN_CAT_CODE,
+                        MAContract.Truck.COLUMN_GROUP_CODE,
+                        MAContract.Truck.COLUMN_UPDATED},
+                MAContract.Truck.COLUMN_REG_NUMBER + " = ?", new String[]{regNo}, null, null, null);
+
+        if(cursor.moveToFirst())
+            return new Truck(
+                    cursor.getString(0),
+                    cursor.getString(1),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(8),
+                    cursor.getString(5),
+                    cursor.getString(7),
+                    Util.getDateFromString(cursor.getString(9)),
+                    cursor.getInt(2),
+                    cursor.getInt(6));
+        else
+            return null;
     }
 
 
+    /////////////////////TRUCK METHODS END //////////////////////////
 
     // master methods
     public static ArrayList<ListItem> getAllRows(Context context,String tableName,String code,String description)
@@ -102,7 +169,14 @@ public class DBOps {
         }
         return allRows;
     }
-
+    public static int deleteRow(Context context, String code,String tableName,String codeColumnName) {
+        MADbHelper dbHelper = new MADbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        int i = db.delete(tableName, codeColumnName + " = ?",
+                new String[]{code});
+        db.close();
+        return i;
+    }
 
 
 //

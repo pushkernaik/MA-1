@@ -1,27 +1,27 @@
 package com.letsappit.mineautomation.BO;
 
+
+import java.util.Date;
+
 /**
  * Created by radhaprasadborkar on 24/12/15.
  */
-public class PrimaryLocation {
-    String code,description;
-    String datetime;
+public class PrimaryLocation extends Location{
 
-    public PrimaryLocation(String code, String description, String datetime) {
-        this.code = code;
-        this.description = description;
-        this.datetime = datetime;
+
+    public PrimaryLocation(String code, String description, Date datetime) {
+        super(code, description, datetime);
     }
 
     public String getCode() {
-        return this.code;
+        return super.getCode();
     }
 
     public String getDescription() {
-        return this.description;
+        return super.getDescription();
     }
 
-    public String getDatetime() {
-        return this.datetime;
+    public Date getDatetime() {
+        return super.getDatetime();
     }
 }

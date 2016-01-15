@@ -10,4 +10,6 @@
     tools:showIn="@layout/activity_row_editor_permit"
     tools:context="com.letsappit.mineautomation.Permit.RowEditorPermit">
 
+
+
 </RelativeLayout>

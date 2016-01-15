@@ -109,6 +109,29 @@ Boolean loaded = false;
                 MAContract.Weighbridge.COLUMN_LOCATION_CODE + " TEXT ," +
                 MAContract.Weighbridge.COLUMN_UPDATED + " TEXT " +
                 " );";
+
+        final String SQL_CREATE_TRUCK_TABLE = "CREATE TABLE " + MAContract.Truck.TABLE_NAME + " (" +
+                // Why AutoIncrement here, and not above?
+                // Unique keys will be auto-generated in either case.  But for weather
+                // forecasting, it's reasonable to assume the user will want information
+                // for a certain date and all dates *following*, so the forecast data
+                // should be sorted accordingly.
+                MAContract.Truck._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+
+                // the ID of the location entry associated with this weather data
+
+                MAContract.Truck.COLUMN_CODE + " TEXT UNIQUE NOT NULL, " +
+                MAContract.Truck.COLUMN_REG_NUMBER + " TEXT UNIQUE NOT NULL," +
+                MAContract.Truck.COLUMN_TW + " INT ," +
+                MAContract.Truck.COLUMN_DRIVER_CODE + " TEXT , " +
+                MAContract.Truck.COLUMN_CARD_ID + " TEXT ," +
+                MAContract.Truck.COLUMN_CAPACITY+ " INT ," +
+                MAContract.Truck.COLUMN_CAT_CODE + " TEXT UNIQUE NOT NULL, " +
+                MAContract.Truck.COLUMN_GROUP_CODE + " TEXT UNIQUE NOT NULL," +
+                MAContract.Truck.COLUMN_UPDATED + " TEXT ," +
+                MAContract.Truck.COLUMN_T_C_C + " TEXT " +
+
+                " );";
         final String SQL_CREATE_PERMIT_TABLE = "CREATE TABLE " + MAContract.Permit.TABLE_NAME + " (" +
                 // Why AutoIncrement here, and not above?
                 // Unique keys will be auto-generated in either case.  But for weather
@@ -130,6 +153,7 @@ Boolean loaded = false;
         sqLiteDatabase.execSQL(SQL_CREATE_WEIGHBRIDGE_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_PERMIT_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_LOCATION_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_TRUCK_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_ZONE_TABLE);
 
 
