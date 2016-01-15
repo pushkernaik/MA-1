@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">MineAutomation</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_master">Master</string>
+    <string name="action_logout">Logout</string>
+    <string name="title_activity_main2">Location</string>
+
+    <string-array name="table_titles">
+        <item>Location</item>
+        <item>Zone</item>
+        <item>Sub Zone</item>
+        <item>Permit</item>
+        <item>Truck</item>
+        <item>User</item>
+
+    </string-array>
+    <string-array name="table_description">
+        <item>Location contents here...</item>
+        <item>Zone information here...</item>
+        <item>Sub Zone information here...</item>
+        <item>Permit all about permits...</item>
+        <item>Truck details...</item>
+        <item>User Info</item>
+
+    </string-array>
+    <string name="title_activity_table_detail">TableDetailActivity</string>
+    <string name="title_activity_row_editor_location">RowEditorLocation</string>
+    <string name="title_activity_row_activity_zone">RowActivityZone</string>
+    <string name="title_activity_row_editor_permit">RowEditorPermit</string>
+    <string name="title_activity_issue_truck_tag">IssueTruckTag</string>
+    <string name="title_activity_read_card">ReadCard</string>
+    <string name="title_activity_laoding">Laoding</string>
+    <string name="title_activity_loading">Loading</string>
+
+</resources>
